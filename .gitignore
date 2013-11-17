@@ -12,8 +12,8 @@
 *.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-nytexplorer/log/*.log
-nytexplorer/tmp
+log/*.log
+tmp
 
 keys.yml
 .DS_Store
