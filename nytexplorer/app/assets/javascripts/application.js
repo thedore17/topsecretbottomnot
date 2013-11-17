@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+//=require bootstrap
+//=require nyt
+//=require modernizr-2.6.2.min.js

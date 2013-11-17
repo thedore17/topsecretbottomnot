@@ -38,6 +38,8 @@ class HomeController < ApplicationController
       r << get_data_for_bill_id(b[:bill_id])
     end
 
+    logger.debug "Sending #{r.to_json}"
+
     render json: r
   end
 
@@ -101,12 +103,14 @@ class HomeController < ApplicationController
     reply        = uri.read
     parsed_reply = JSON.parse reply
 
-    result = {:sponsor => {}, :party => {}, :bill_number => bill_number}
+    result = {:sponsor => {}, :party => {}, :bill_number => bill_number.to_s.upcase}
 
     return if parsed_reply["count"] == 0
 
     result[:title] = parsed_reply["results"][0]['official_title']
     result[:sponsor][:twitter_id] = parsed_reply["results"][0]['sponsor']['twitter_id']
+    result[:sponsor][:name] = parsed_reply["results"][0]['sponsor']['first_name'] + " " + parsed_reply["results"][0]['sponsor']['last_name']
+
     sponsor_party = parsed_reply["results"][0]['sponsor']['party']
     result[:party][sponsor_party] = 1
 

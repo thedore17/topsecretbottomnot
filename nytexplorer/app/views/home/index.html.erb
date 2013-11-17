@@ -1,1 +1,30 @@
-<%= @hello %>!!
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h2 class="title">Paste in a New York Times URL.</h2>
+        <h3 class="subhead">Find related legislation.</h3>
+
+
+             <div class="input-group">
+      <input type="text" class="form-control" placeholder="e.g. http://www.nytimes.com/2013/11/17/health/in-demand-in-clinics-and-on-the-street-bupe-can-be-savior-or-menace.html?hp">
+      <span class="input-group-btn">
+        <button class="btn btn-default submit" type="button" value="submit">Submit</button>
+      </span>
+    </div><!-- /input-group -->
+
+      </div>
+
+      <div class="row">
+  <div class="col-lg-6">
+    <h2>New York Times article:</h2>
+    <div id="nyt"></div>
+
+    <iframe src="http://www.nytimes.com/2013/11/17/health/in-demand-in-clinics-and-on-the-street-bupe-can-be-savior-or-menace.html?hp" width="100%" height="1500" style="overflow-x:hidden;"></iframe>
+
+  </div>
+
+   <div class="col-lg-6">
+
+      <div id="sunlight"></div>
+  </div>
+</div><!--row-->
+
