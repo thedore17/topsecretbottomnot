@@ -1,4 +1,6 @@
-set :application, "nytexplorer"
+require 'bundler/capistrano'
+
+set :application, "nyte.shrub.ca"
 set :repository,  "git@github.com:thedore17/topsecretbottomnot.git"
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
@@ -11,7 +13,10 @@ role :app, "shrub.ca"                          # This may be the same as your `W
 
 set :domain, "shrub.ca"
 set :use_sudo, false
+set :keep_releases, 5
 
+
+set :deploy_via, :remote_cache
 set :deploy_to, "/data/sites/#{application}"
 
 # if you want to clean up old releases on each deploy uncomment this:
@@ -27,4 +32,12 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+
+  task :symlink_config_files do
+	run "#{ try_sudo } ln -sf #{ deploy_to }/shared/keys.yml #{ release_path }/config/keys.yml"
+  end
 end
+
+before "deploy:assets:precompile", "deploy:symlink_config_files"
+after "deploy", "deploy:cleanup"
+
