@@ -113,10 +113,6 @@ body {
     font: 17px/26px georgia,"times new roman",times,serif;
 }
 
-#sunlight > div:nth-child(odd) {
-    background:;
-}
-
 #sunlight h3 {
     margin-bottom: 0;
 }
